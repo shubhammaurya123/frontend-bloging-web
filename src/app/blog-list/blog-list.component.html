@@ -1,0 +1,109 @@
+<div class="myblog mt-4 bg-light p-4 rounded shadow-lg">
+  <!-- Call-to-Action Section -->
+  <div class="text-center mt-4 mb-4 p-4 bg-white rounded shadow-sm" *ngIf="!isLoggedIn">
+    <p class="fs-4 text-muted">
+      <i class="bi bi-pencil-square text-success me-2"></i>
+      Have thoughts or ideas you'd like to share? Write a blog and share your experience with others!
+    </p>
+    <p class="fs-5 text-primary mb-4">
+      It's easy to get started. Log in and let's create something amazing together!
+    </p>
+    <a
+      href="/login"
+      class="btn btn-success btn-lg animate__animated animate__pulse shadow-lg px-4 py-2"
+    >
+      <i class="bi bi-person-check-fill"></i> Let's Start
+    </a>
+  </div>
+
+  <!-- Search and Add Blog Section -->
+  <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
+    <div class="input-group w-50 shadow-sm">
+      <span class="input-group-text bg-primary text-white rounded-start">
+        <i class="bi bi-search"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control rounded-end inputclass"
+        placeholder="Search blogs..."
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+    <button
+      class="btn btn-success btn-lg shadow-sm d-flex align-items-center gap-2"
+      data-bs-toggle="modal"
+      data-bs-target="#postBlogModal"
+    >
+      <i class="bi bi-plus-lg"></i> Add Blog
+    </button>
+  </div>
+
+  <!-- Blog Cards -->
+  <div class="d-flex flex-row flex-wrap gap-4 justify-content-center">
+    <div
+      class="card-container"
+      *ngFor="let post of filteredBlogPosts"
+      style="width: 22rem"
+    >
+      <div class="card shadow-lg border-0 rounded-3 h-100 overflow-hidden hover-shadow">
+        <img
+          [src]="'http://localhost:4500/uploads/' + post.image"
+          class="card-img-top rounded-top"
+          alt="{{ post.title }}"
+          style="height: 200px; object-fit: cover"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fs-5 text-primary">
+            <i class="bi bi-bookmark-fill text-warning"></i> {{ post.title }}
+          </h5>
+
+          <!-- Categories -->
+          <div class="mb-2">
+            <strong class="text-secondary">
+              <i class="bi bi-tags-fill"></i> Categories:
+            </strong>
+            <div class="d-flex flex-wrap gap-1 mt-1">
+              <span
+                *ngFor="let category of post.categorys"
+                class="badge bg-info text-white px-2 py-1 rounded-pill"
+              >
+                {{ category.name }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="mb-2">
+            <strong class="text-secondary">
+              <i class="bi bi-hash"></i> Tags:
+            </strong>
+            <div class="d-flex flex-wrap gap-1 mt-1">
+              <span
+                *ngFor="let tag of post.tags"
+                class="badge bg-secondary text-white px-2 py-1 rounded-pill"
+              >
+                {{ tag.name }}
+              </span>
+            </div>
+          </div>
+
+          <a
+            [routerLink]="['/blog', post._id]"
+            class="btn btn-outline-success w-100 mt-auto shadow-sm d-flex align-items-center justify-content-center gap-2"
+          >
+            <i class="bi bi-book-half"></i> Read More
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Found Message -->
+    <div *ngIf="filteredBlogPosts.length === 0" class="col-12 text-center p-4">
+      <p class="fs-3 text-danger">
+        <i class="bi bi-exclamation-triangle-fill"></i> No blogs found matching your search.
+      </p>
+    </div>
+  </div>
+
+  <app-post-blog (blogAdded)="onBlogAdded()"></app-post-blog>
+</div>

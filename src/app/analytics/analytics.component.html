@@ -1,0 +1,29 @@
+<div class="">
+  <h2 class="mb-4">Blog Analytics</h2>
+
+  <!-- Analytics Cards -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let card of analyticsCards">
+      <div class="card shadow-lg {{ card.bgColor }} text-white">
+        <div class="card-body d-flex align-items-center">
+          <i [class]="card.icon + ' fs-2 me-3'"></i>
+          <div>
+            <h5 class="card-title">{{ card.title }}</h5>
+            <p class="card-text fs-4">{{ card.value }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <!-- <div class="chart-container mb-5">
+      <canvas baseChart
+              [datasets]="barChartData.datasets"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div> -->
+</div>

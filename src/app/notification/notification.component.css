@@ -1,0 +1,18 @@
+.card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+  }
+  

@@ -1,0 +1,77 @@
+/* Profile image in the navbar */
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Optional: Add a white border around the profile image */
+  }
+  
+  /* Dropdown container */
+  .custom-dropdown {
+    min-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adding a larger shadow for depth */
+    background-color: #fff;
+    z-index: 1000;
+    font-size: 14px;
+    position: absolute; /* Position absolutely to the button */
+    right: 0; /* Open to the right */
+    top: 100%; /* Position below the button */
+    margin-top: 10px; /* Optional: Add space between the button and the dropdown */
+  }
+  
+  /* Profile image in the dropdown */
+  .profile-popup-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+    margin-bottom: 10px;
+  }
+  
+  /* Align name, age, and email properly */
+  .dropdown-menu li {
+    padding: 15px;
+  }
+  
+  /* Text and profile information */
+  h6 {
+    color: #343a40; /* Darker color for the name */
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .text-muted {
+    color: #6c757d !important; /* Darken the text color for age and email */
+  }
+  
+  .dropdown-menu .dropdown-divider {
+    border-top: 1px solid #e5e5e5;
+    margin: 10px 0;
+  }
+  
+  /* Button styling */
+  button {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 15px;
+  }
+  
+  button:hover {
+    background-color: #dc3545; /* Darken button on hover */
+  }
+  
+  /* Adjust spacing */
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Fix text spacing */
+  .text-muted.small {
+    margin-top: 5px;
+  }
+  

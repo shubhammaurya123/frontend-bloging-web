@@ -1,0 +1,16 @@
+/* post-blog.component.css */
+
+/* Example styling */
+.modal-content {
+    border-radius: 10px;
+  }
+  
+  .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  

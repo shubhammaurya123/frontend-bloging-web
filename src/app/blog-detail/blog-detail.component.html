@@ -1,0 +1,150 @@
+<div class="mt-5">
+  <!-- Success Alert -->
+  <div
+    *ngIf="showAlert"
+    class="alert alert-success alert-dismissible fade show"
+  >
+    Your comment has been added successfully! It will be visible once approved.
+    <button
+      type="button"
+      class="btn-close"
+      (click)="showAlert = false"
+    ></button>
+  </div>
+
+  <div class="d-flex gap-4">
+    <!-- Blog Details -->
+    <div class="flex-grow-1">
+      <div class="card shadow border-0 p-3">
+        <img
+          [src]="'http://localhost:4500/uploads/' + blog.image"
+          class="card-img-top rounded-top"
+          alt="{{ blog.title }}"
+          style="height: 300px; object-fit: cover"
+        />
+        <!-- <img [src]="blog.image" class="card-img-top rounded" alt="{{ blog.title }}" /> -->
+        <div class="card-body">
+          <h2 class="card-title text-primary">{{ blog.title }}</h2>
+          <p class="card-text text-muted">{{ blog.content }}</p>
+
+          <!-- Categories & Tags -->
+          <p>
+            <strong>Categories:</strong>
+            <span
+              *ngFor="let category of blog.categorys"
+              class="badge bg-info me-1"
+              >{{ category.name }}</span
+            >
+          </p>
+          <p>
+            <strong>Tags:</strong>
+            <span
+              *ngFor="let tag of blog.tags"
+              class="badge bg-secondary me-1"
+              >{{ tag.name }}</span
+            >
+          </p>
+
+          <!-- Comments Section -->
+          <div class="mt-4">
+            <h4 class="text-success">Comments</h4>
+            <div class="list-group">
+              <div
+                *ngFor="let comment of blog.comments"
+                class="list-group-item border-0"
+              >
+                <div *ngIf="comment.isApproved">
+                  <div class="d-flex align-items-center gap-2">
+                    <strong class="text-primary">{{ comment.user }}</strong>
+                    <small class="text-muted">{{
+                      comment.date | date : "short"
+                    }}</small>
+                  </div>
+                  <p class="text-dark">{{ comment.comment }}</p>
+
+                  <!-- Reply Button -->
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    (click)="toggleReply(comment.id)"
+                  >
+                    <i class="bi bi-reply"></i> Reply
+                  </button>
+
+                  <!-- Replies Section -->
+                  <div class="ms-4 mt-2" *ngIf="comment.replies?.length">
+                    <h6 class="text-muted">Replies:</h6>
+                    <div
+                      *ngFor="let reply of comment.replies"
+                      class="border-start ps-3 mb-2"
+                    >
+                      <div class="d-flex align-items-center gap-2">
+                        <strong class="text-success">{{ reply.user }}</strong>
+                        <small class="text-muted">{{
+                          reply.date | date : "short"
+                        }}</small>
+                      </div>
+                      <p class="text-dark">{{ reply.comment }}</p>
+                    </div>
+                  </div>
+
+                  <!-- Reply Input -->
+                  <div *ngIf="replyingTo === comment.id" class="mt-2">
+                    <textarea
+                      [(ngModel)]="newReply"
+                      class="form-control"
+                      rows="2"
+                      placeholder="Write a reply..."
+                    ></textarea>
+                    <div class="mt-2 d-flex gap-2">
+                      <button
+                        class="btn btn-sm btn-success"
+                        (click)="addReply(comment.id)"
+                      >
+                        <i class="bi bi-send"></i> Post Reply
+                      </button>
+                      <button
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="cancelReply()"
+                      >
+                        <i class="bi bi-x-circle"></i> Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add New Comment -->
+          <div class="comment-form mt-4">
+            <h5 class="text-primary">Leave a Comment</h5>
+            <textarea
+              [(ngModel)]="newComment"
+              class="form-control"
+              placeholder="Write your comment..."
+              rows="3"
+            ></textarea>
+            <button (click)="addComment()" class="btn btn-primary mt-2 w-100">
+              <i class="bi bi-chat-dots"></i> Post Comment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Blogs -->
+    <div class="related-blogs bg-light p-3 rounded shadow-sm">
+      <h5 class="text-dark mb-3">Related Blogs</h5>
+      <ul class="list-group">
+        <li *ngFor="let relatedBlog of relatedBlogs" class="list-group-item">
+          <a
+            [routerLink]="['/blog', relatedBlog.id]"
+            class="text-decoration-none text-primary fw-bold"
+          >
+            <i class="bi bi-arrow-right-circle"></i> {{ relatedBlog.title }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

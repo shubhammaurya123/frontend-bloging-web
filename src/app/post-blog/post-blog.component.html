@@ -1,0 +1,88 @@
+
+<div class="modal fade" id="postBlogModal" tabindex="-1" aria-labelledby="postBlogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">
+            <i class="bi bi-pencil-square"></i> Add a New Blog
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="blogForm" (ngSubmit)="submitBlog()">
+                <!-- Title -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Title</label>
+                  <input type="text" class="form-control" formControlName="title" placeholder="Enter blog title" />
+                  <div *ngIf="blogForm.get('title')?.invalid && blogForm.get('title')?.touched" class="text-danger">
+                    Title is required.
+                  </div>
+                </div>
+              
+                <!-- Content -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Content</label>
+                  <textarea class="form-control" rows="5" formControlName="content" placeholder="Write your content here..."></textarea>
+                  <div *ngIf="blogForm.get('content')?.invalid && blogForm.get('content')?.touched" class="text-danger">
+                    Content is required and must be at least 20 characters.
+                  </div>
+                </div>
+              
+                <!-- Image Upload -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Upload Image</label>
+                  <input type="file" class="form-control" (change)="onFileSelected($event)" />
+                  <img *ngIf="imagePreview" [src]="imagePreview" class="img-fluid mt-2 rounded shadow" style="max-height: 200px;" />
+                </div>
+              
+                <!-- Categories -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Categories</label>
+                  <div class="d-flex">
+                    <input type="text" class="form-control me-2" #categoryInput placeholder="Enter category" />
+                    <button type="button" class="btn btn-primary" (click)="addCategory(categoryInput)">
+                      <i class="bi bi-plus"></i> Add
+                    </button>
+                  </div>
+                  <div class="mt-2">
+                    <span *ngFor="let category of categories.controls; let i = index" class="badge bg-info text-white me-1">
+                      {{ category.value }}
+                      <i class="bi bi-x-circle ms-1" (click)="removeCategory(i)" style="cursor: pointer;"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="categories.invalid && blogForm.touched" class="text-danger">
+                    At least one category is required.
+                  </div>
+                </div>
+              
+                <!-- Tags -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Tags</label>
+                  <div class="d-flex">
+                    <input type="text" class="form-control me-2" #tagInput placeholder="Enter tag" />
+                    <button type="button" class="btn btn-secondary" (click)="addTag(tagInput)">
+                      <i class="bi bi-tag"></i> Add
+                    </button>
+                  </div>
+                  <div class="mt-2">
+                    <span *ngFor="let tag of tags.controls; let i = index" class="badge bg-secondary text-white me-1">
+                      {{ tag.value }}
+                      <i class="bi bi-x-circle ms-1" (click)="removeTag(i)" style="cursor: pointer;"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="tags.invalid && blogForm.touched" class="text-danger">
+                    At least one tag is required.
+                  </div>
+                </div>
+              
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-success w-100" [disabled]="blogForm.invalid">
+                  <i class="bi bi-check-circle"></i> Submit Blog
+                </button>
+              </form>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+  

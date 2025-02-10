@@ -1,0 +1,40 @@
+<div class="mt-4">
+    <div *ngFor="let notification of notifications" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <!-- Notification Header -->
+          <div>
+            <h5 class="card-title">{{ notification.userName }} commented</h5>
+            <p class="card-text text-muted">{{ notification.commentTime | date: 'short' }}</p>
+          </div>
+          <div>
+            <span 
+              [class]="notification.status === 'approved' ? 'badge bg-success' : 'badge bg-danger'"
+              >{{ notification.status | uppercase }}</span
+            >
+          </div>
+        </div>
+  
+        <p class="card-text">{{ notification.comment }}</p>
+  
+        <!-- Buttons for approval or rejection -->
+        <div class="d-flex justify-content-end">
+          <button 
+            class="btn btn-success me-2" 
+            (click)="approveComment(notification)"
+            [disabled]="notification.status !== 'pending'"
+          >
+            <i class="bi bi-check-circle"></i> Approve
+          </button>
+          <button 
+            class="btn btn-danger"
+            (click)="rejectComment(notification)"
+            [disabled]="notification.status !== 'pending'"
+          >
+            <i class="bi bi-x-circle"></i> Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
