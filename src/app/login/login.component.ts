@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../authservice.service'; // Import the AuthService
 import { Router } from '@angular/router'; // Optionally, you can navigate to a different page after successful login
 
+// 30432187399
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,3 +46,8 @@ export class LoginComponent {
     }
   }
 }
+/// patari pul 
+
+//suchak naka crcule 
+
+// https://hdhub4u.fail/sacred-games-2019-hindi-season-2-complete-720p-480p-esubs-web-dl/

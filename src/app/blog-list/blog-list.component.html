@@ -36,6 +36,12 @@
     >
       <i class="bi bi-plus-lg"></i> Add Blog
     </button>
+    <button
+      class="btn btn-info btn-lg shadow-sm d-flex align-items-center gap-2"
+      type="button"
+    >
+      <i class="bi bi-eye"></i> View All
+    </button>
   </div>
 
   <!-- Blog Cards -->
@@ -47,7 +53,7 @@
     >
       <div class="card shadow-lg border-0 rounded-3 h-100 overflow-hidden hover-shadow">
         <img
-          [src]="'http://localhost:4500/uploads/' + post.image"
+          [src]="post.image"
           class="card-img-top rounded-top"
           alt="{{ post.title }}"
           style="height: 200px; object-fit: cover"
