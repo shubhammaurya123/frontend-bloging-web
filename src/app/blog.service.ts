@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BlogService {
-  private baseApi = 'http://54.92.219.55/'; // Update this URL
+  private baseApi = 'http://54.92.219.55'; // Update this URL
 
   constructor(private http: HttpClient) {}
 

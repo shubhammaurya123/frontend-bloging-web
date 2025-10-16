@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseApi = 'http://54.92.219.55/';
+  private baseApi = 'http://54.92.219.55';
   private authTokenKey = 'token';
   private userNameKey = 'userName';
   private userEmailKey = 'userEmail';
